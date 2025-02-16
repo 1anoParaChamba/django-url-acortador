@@ -28,14 +28,19 @@ def main(request):
 
             url=UrlAcortadas.objects.filter(url=request.POST['url']).first()
             url_corta=UrlAcortadas.url_acortda(url.codigo)
-            messages.info(request, f"⚠️ La URL ya existe: <a href='{url_corta}' target='_blank' class='copyable'>{url_corta}</a> <button class='btn-copy' onclick='copiarTexto(\"{url_corta}\")'>📋 Copiar URL</button>")
+            url_corta1=f"{request.build_absolute_uri().rstrip('/')}/{url.codigo}/"
+
+            messages.info(request, f"⚠️ La URL ya existe: <a href='{url_corta1}' target='_blank' class='copyable'>{url_corta1}</a> <button class='btn-copy' onclick='copiarTexto(\"{url_corta1}\")'>📋 Copiar URL</button>")
             return redirect('/',{'mensaje':'Esta URL ya existe'})
         
         UrlAcortadas.objects.create(url=request.POST['url'])
         url=UrlAcortadas.objects.filter(url=request.POST['url']).first()
         url_corta=UrlAcortadas.url_acortda(url.codigo)
-        messages.success(request, f"✅ URL acortada con éxito: <a href='{url_corta}' target='_blank' class='copyable'>{url_corta}</a> <button class='btn-copy' onclick='copiarTexto(\"{url_corta}\")'>📋 Copiar URL</button>")
+        url_corta1=f"{request.build_absolute_uri().rstrip('/')}/{url.codigo}/"
+        messages.success(request, f"✅ URL acortada con éxito: <a href='{url_corta1}' target='_blank' class='copyable'>{url_corta1}</a> <button class='btn-copy' onclick='copiarTexto(\"{url_corta1}\")'>📋 Copiar URL</button>")
         return redirect('/')
+
+
 
 
 def redirigir(request, codigo):
