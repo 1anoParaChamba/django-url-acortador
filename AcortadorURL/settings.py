@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'AcortadorURL.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
-        default='postgresql://postgres:postgres@localhost:5432/mysite',
+        default='postgresql://acortadorurl_user:wKXRIbwuF9IdvSanSNPUamOwifwZ8XJr@dpg-cuorhpogph6c73dpkrk0-a/acortadorurl',
         conn_max_age=600
     )
 }

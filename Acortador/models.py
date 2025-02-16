@@ -10,6 +10,6 @@ class UrlAcortadas(models.Model):
     url=models.TextField(unique=True)
     codigo=models.TextField(max_length=10, unique=True, default=generar_codigo)
     def url_acortda(codigo):
-        return f"http://localhost:8000/{codigo}"
+        return f"https://django-url-acortador.onrender.com/{codigo}"
 
 
