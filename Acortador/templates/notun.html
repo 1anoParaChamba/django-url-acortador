@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AcortadorURL</title>
+
+    <style>
+        .mensaje {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .success { background-color: #d4edda; color: #155724; }
+        .info { background-color: #cce5ff; color: #004085; }
+        .error { background-color: #f8d7da; color: #721c24; }
+        .copyable {
+            cursor: pointer;
+            text-decoration: underline;
+            color: blue;
+        }
+    </style>
+    <script>
+         function copiarTexto(texto) {
+            navigator.clipboard.writeText(texto).then(() => {
+                alert("✅ URL copiada: " + texto);
+            }).catch(err => {
+                console.error("Error al copiar", err);
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Acortador de URL</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{form}}
+        <button>!Acortar!</button>
+    </form>
+
+   {% if messages %}
+        {% for message in messages %}
+            <div class="mensaje {{ message.tags }}">
+                {{ message|safe }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    
+</body>
+</html>
